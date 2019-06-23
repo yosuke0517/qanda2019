@@ -50,11 +50,9 @@ jobs:
             echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
             source $BASH_ENV
 
-          # Install NodeJS
             nvm install v11.9.0
             nvm alias default v11.9.0
 
-          # Install Yarn
             npm install -g yarn@1.13.0
 
       - run: mv config/database.yml.ci config/database.yml
