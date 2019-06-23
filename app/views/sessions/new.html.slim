@@ -1,0 +1,20 @@
+h1 ログイン 
+
+= form_with scope: :session, local: true do |f|
+ .form-group
+   = f.label :email, 'メールアドレス'
+   = f.email_field :email, class: 'form-control', id: 'session_email'
+ .form-group
+   = f.label :password, 'パスワード'
+   = f.password_field :password, class: 'form-control', id: 'session_password'
+ .form-group
+   = f.submit 'ログインする', class: 'btn btn-primary'
+
+div
+  h3.text-left ・サンプルユーザー
+  h3 メールアドレス：「sample@email.com」
+  h3 パスワード：「password」
+div.mt-5
+  h3 ※アプリ仕様
+  h3 ・シンプルなQ&Aサービス風アプリ
+  h3 ・質問・回答の閲覧はログインしていなくてもできるが、その他の機能はログインしていないとできない。

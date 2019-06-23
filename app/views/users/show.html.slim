@@ -1,0 +1,23 @@
+.row
+  aside.col-xs-4
+    .card[style="width: 20rem;"]
+      h3.card-title
+        = @user.name
+      .card-body
+        = image_tag @user.image if @user.image.attached?
+  .col-xs-8
+    ul.nav.nav-tabs
+      li.nav-item
+        a.nav-link.active
+          | Questions(まだダミー)
+      li.nav-item
+        a.nav-link
+          | Answers(まだダミー)
+      li.nav-item
+        a.nav-link
+          | Followings(まだダミー)
+      li.nav-item
+        a.nav-link
+          | Followers(まだダミー)
+div
+  = link_to '> Home', root_path, class: 'btn btn-outline-primary mt-3'

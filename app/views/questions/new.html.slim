@@ -1,0 +1,17 @@
+div
+  .col-md-12
+    h2.text-center
+      | 質問新規投稿
+    -if @question.errors.present?
+      ul#error_explanation
+        - @question.errors.full_messages.each do |message|
+          li = message
+
+    = form_with model: @question, local: true, url: confirm_new_question_path do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control', id: 'question_title'
+      .form-group
+        = f.label :質問内容
+        = f.text_area :content, class: 'form-control', id: 'editor'
+      = f.submit '確認', class: 'btn btn-primary'

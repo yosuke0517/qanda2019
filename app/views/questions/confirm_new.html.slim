@@ -1,0 +1,18 @@
+h1 登録内容の確認
+
+= form_with model: @question, local: true do |f|
+  = f.hidden_field :user_id, { value: current_user.id}
+  = f.hidden_field :author, { value: current_user.name}
+  table.table.table-hover
+    tbody
+      tr
+        th = Question.human_attribute_name(:title)
+        td = @question.title
+        = f.hidden_field :title
+      tr
+        th = Question.human_attribute_name(:content)
+        td = @question.content
+        = f.hidden_field :content
+  = f.submit "戻る", name: 'back', class: "btn btn-success mt-3 mr-3"
+  = f.submit "Save", class: "btn btn-primary mt-3"
+end

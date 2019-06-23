@@ -1,0 +1,23 @@
+ja:
+  activerecord:
+    # モデル名
+    models:
+      user: ユーザ
+      question: 質問
+    # モデルごとのアトリビュート名
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        admin: 管理者
+        password: パスワード
+        password_confirm: パスワード（確認用）
+        image: 画像
+      question:
+        title: タイトル
+        name: 名前
+        content: 質問内容
+  # 全モデル共通のアトリビュート名
+  attributes:
+    created_at: 作成日時
+    updated_at: 更新日時

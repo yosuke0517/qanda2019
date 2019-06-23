@@ -1,0 +1,23 @@
+div
+  h1
+    | Sign up
+.col-md-6.offset-md-3
+  = form_with model: @user, url: confirm_new_user_path, local: true do |f|
+    = render 'layouts/error_messages', model: f.object
+    .form-group
+      = f.label :Name
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :Email
+      = f.email_field :email, class: "form-control"
+    .form-group
+      = f.label :password
+      = f.password_field :password, class: "form-control"
+    .form-group
+      = f.label :password_confirm
+      = f.password_field :password_confirmation, class: "form-control"
+    .form-group
+      = f.label :image
+      = f.file_field :image, class: "form-control"
+    .text-center
+      = f.submit "Sign up", class: "btn btn-primary .mt-1"

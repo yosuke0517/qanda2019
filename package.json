@@ -1,0 +1,7 @@
+{
+  "name": "myapp",
+  "private": true,
+  "dependencies": {
+    "ckeditor": "^4.11.4"
+  }
+}

@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title
+      | Myapp
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js"
+    = render 'layouts/shim'
+  body
+  = render 'layouts/header'
+  = render 'layouts/flash_messages'
+  #main_container.container
+    .p-home.px-2.px-1.pt-4.pt-1
+      = yield
+  = render 'layouts/footer'
+  = javascript_include_tag 'editor'

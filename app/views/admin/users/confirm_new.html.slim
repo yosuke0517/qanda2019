@@ -1,0 +1,28 @@
+h1 登録内容の確認（ユーザ登録）
+= form_with model: [:admin, @user], local: true do |f|
+  table.table.table-hover
+    tbody
+      tr
+        th = User.human_attribute_name(:name)
+        td = @user.name
+        = f.hidden_field :name
+      tr
+        th = User.human_attribute_name(:email)
+        td = @user.email
+        = f.hidden_field :email
+      tr
+        th = User.human_attribute_name(:admin)
+        - if @user.admin?
+            td = "管理者"
+        - else
+            td = "一般"
+        = f.hidden_field :admin
+      tr
+        th = User.human_attribute_name(:password)
+        td = 'パスワードはセキュリティの都合で表示されません'
+        = f.hidden_field :password
+      tr
+        th = User.human_attribute_name(:image)
+        td = @user.image
+  = f.submit "戻る", name: 'back', class: "btn btn-success mt-3 mr-3"
+  = f.submit "Save", class: "btn btn-primary mt-3"

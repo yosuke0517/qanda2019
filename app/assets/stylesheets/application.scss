@@ -1,0 +1,120 @@
+@import "bootstrap";
+$white: #ffffff;
+$dark-white: #f5f5f5;
+$light-gray: #777777;
+$state-danger-text: #ff3333;
+
+body , html {
+  height: 100%;
+}
+#main_container {
+  width: 100%;
+  position: relative;
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
+}
+
+.footer {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: $dark-white;
+    display: block;
+    text-align: center;
+    //position: fixed;
+    bottom: 0;
+}
+
+.nav-link{
+    color: $white;
+}
+
+/* typography */
+h1,h2,h3,h4,h5,h6 {
+    line-height: 1;
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2em;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: normal;
+    color: $light-gray
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.7em;
+}
+
+#error_explanation {
+    color: red;
+    ul {
+      color: red;
+      margin: 0 0 30px 0;
+    }
+  }
+  
+  .field_with_errors {
+    input {
+        @extend .is-invalid;
+      }
+    .form-control {
+      color: $state-danger-text;
+    }
+  }
+
+.p-home {
+  position: relative;
+  width: 100%;
+
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.answer_count {
+  color: darksalmon;
+}
+
+//.ck {
+//  height: 400px;
+//}
+
+.ck-editor__editable {
+  min-height: 400px;
+}
+
+#editor {
+  visible: false
+}
+
+::placeholder {
+  font-size: 0.95em;
+}
+
+#table_id {
+  width: 10%;
+}
+
+#table_author {
+  width: 15%;
+}
+
+#table_title {
+  width: 50%;
+}
+
+#table_menu {
+  width: 25%;
+}

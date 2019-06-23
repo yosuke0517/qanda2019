@@ -1,0 +1,55 @@
+.row
+  .col-md-12
+    h2
+      = @question.title
+    div
+      |  質問内容: 
+      == @question.content
+    div
+      |  Name: 
+      = @question.name
+    hr
+    div
+      h3
+        | Answers
+      table.table.table-striped
+        - if @question.answers.any?
+          = '回答:'
+          span.answer_count
+            = @question.answers.count.to_s
+          span
+            = '件'
+          hr
+          - @question.answers.each do |answer|
+            .container
+              .row
+                .col-4
+                  == Rinku.auto_link(answer.content)
+                .col-2.offset-6
+                  = 'author:' + answer.author
+              - if current_user
+                - if answer.author == current_user.name
+                  div.offset-10
+                    = link_to '編集',edit_question_answer_path(@question, answer), class: 'btn btn-outline-success mr-2'
+                    |
+                    = link_to '削除', question_answer_path(@question, answer), method: :delete, data: {confirm: '本当に削除しますか？'}, class: 'btn btn-outline-danger'
+            hr
+        - else
+          p
+            | 回答はまだありません。
+    h3
+      | Post new answer.
+    = form_with model: [@question, @answer], local: true do |f|
+      = f.hidden_field :question_id, { value: @question.id}
+      - if current_user
+        = f.hidden_field :user_id, {value: current_user.id}
+        = f.hidden_field :author, {value: current_user.name}
+      .form-group
+        = f.label :質問内容
+        = f.text_area :content, class: 'form-control',id: 'editor'
+      .text-center.mb-3
+        = f.submit "Post", class: 'btn btn-primary'
+  div
+    = link_to '> Home', root_path, class: 'btn btn-outline-primary mb-3 ml-3'
+//javascript:
+//    CKEDITOR.replace('editor', {});

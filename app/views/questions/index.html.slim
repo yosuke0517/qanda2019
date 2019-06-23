@@ -1,0 +1,29 @@
+.row
+  = search_form_for @search, remote: false, id: "search_form",class: 'form-inline mb-2', url: questions_path do |f|
+    = f.text_field :title_cont, placeholder: Settings.service.ransack_placeholder, class: 'form-control mr-sm-2'
+    = f.submit class: 'btn btn-success my-2 my-sm-0'
+  table.table.table-striped.table-condensed
+    thead.thead-light
+      tr
+        th#table_id ID
+        th#table_author 作成者
+        th#table_title title
+        th#table_menu MENU
+    tbody#search_check
+      - @questions.each do |question|
+        tr
+          td[width="10%"]
+            = question.id
+          td[width="15%"]
+            = question.author
+          td[width="50%"]
+            = link_to question.title, question_path(question)
+          td[width="25%"]
+            - if current_user
+              - if current_user.id == question.user_id
+                = link_to '編集', edit_question_path(question), class: 'btn btn-outline-success mr-3'
+                = link_to '削除', question_path(question), class: 'btn btn-outline-danger', method: :delete, data: {confirm: '本当に削除しますか?'}
+
+  = paginate @questions
+div
+  = link_to '新規質問', new_question_path, class: 'btn btn-primary'

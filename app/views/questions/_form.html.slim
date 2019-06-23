@@ -1,0 +1,16 @@
+= form_with model: @question, local: true do |f|
+  = render 'layouts/error_messages', model: f.object
+  = f.hidden_field :user_id, { value: current_user.id}
+  = f.hidden_field :author, { value: current_user.name}
+  .form-group
+    label
+      | Title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :質問内容
+    = f.text_area :content, class: "form-control",id:'editor'
+    / = f.text_area :content, class: "form-control"
+    .text-center
+      = f.submit "Save", class: "btn btn-primary mt-3"
+div
+  = link_to '> Home', root_path, class: 'btn btn-outline-primary mb-3 ml-3'
