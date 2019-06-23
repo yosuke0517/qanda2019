@@ -12,7 +12,8 @@ jobs:
           RAILS_ENV: test
       - image: mysql:5.7
         environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+           - MYSQL_ROOT_HOST: '%'
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -40,6 +41,9 @@ jobs:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run: yarn install
+      - run: mv config/database.yml.ci config/database.yml
 
       # Database setup
       - run: bundle exec rake db:create
