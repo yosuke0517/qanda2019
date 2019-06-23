@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/ruby:2.6.1
         environment:
-          RAILS_ENV: development
+          RAILS_ENV: test
       - image: mysql:5.7
         environment:
            - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
