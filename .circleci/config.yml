@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Setup NodeJS and Yarn
           command: |
-            apt-get install yarn
+            sudo apt-get install yarn
 
       - run: mv config/database.yml.ci config/database.yml
 
