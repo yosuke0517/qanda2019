@@ -55,7 +55,7 @@ jobs:
             nvm alias default v11.9.0
 
             # Install Yarn
-            npm install -g yarn@1.13.0
+            npm install -g yarn
 
       - run: mv config/database.yml.ci config/database.yml
 
