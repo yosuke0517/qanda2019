@@ -53,7 +53,7 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 
-      - run : apt-get install chromedriver
+      - run : sudo apt-get install chromedriver
 
       # run tests!
       - run:
