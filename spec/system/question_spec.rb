@@ -6,20 +6,6 @@ describe 'QandA管理機能', type: :system do
   let(:user_b) { FactoryBot.create(:user, name: 'ユーザB', email: 'b0@email.com') }
   let!(:question_a) { FactoryBot.create(:question, name: 'name',title: 'test question A',content: 'test Aだよ',author: 'ユーザA',user: user_a) }
 
-  def fill_in_ckeditor(locator, opts)
-    # content = opts.fetch(:with).to_json # convert to a safe javascript string
-    # page.execute_script <<-SCRIPT
-    # CKEDITOR.instances['#{locator}'].setData(#{content});
-    # $('textarea##{locator}').text(#{content});
-    # SCRIPT
-      browser = page.driver.browser
-      content = opts.fetch(:with).to_json
-      page.execute_script <<-SCRIPT
-    ClassicEditor.instances['#{locator}'].setData(#{content});
-    $('textarea##{locator}').text(#{content});
-      SCRIPT
-  end
-
     before do
 
       # 共通化したログイン処理
