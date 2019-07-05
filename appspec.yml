@@ -15,9 +15,9 @@ Resources:
               SecurityGroups: ["sg-0440dc5f7e14b667b"]
               AssignPublicIp: "ENABLED"
 
-Hooks:
-- BeforeInstall: "BeforeInstallHookFunctionName"
-- AfterInstall: "AfterInstallHookFunctionName"
-- AfterAllowTestTraffic: "AfterAllowTestTrafficHookFunctionName"
-- BeforeAllowTraffic: "BeforeAllowTrafficHookFunctionName"
-- AfterAllowTraffic: "AfterAllowTrafficHookFunctionName"
+# Hooks:
+# - BeforeInstall: "BeforeInstallHookFunctionName"
+# - AfterInstall: "AfterInstallHookFunctionName"
+# - AfterAllowTestTraffic: "AfterAllowTestTrafficHookFunctionName"
+# - BeforeAllowTraffic: "BeforeAllowTrafficHookFunctionName"
+# - AfterAllowTraffic: "AfterAllowTrafficHookFunctionName"
