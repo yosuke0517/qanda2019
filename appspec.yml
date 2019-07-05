@@ -10,10 +10,10 @@ Resources:
 # Optional properties
         PlatformVersion: "LATEST"
         NetworkConfiguration:
-            AwsvpcConfiguration:
-              Subnets: ["publicsubnet-1a", "publicsubnet-1c"]
-              SecurityGroups: ["sg-0440dc5f7e14b667b"]
-              AssignPublicIp: "ENABLED"
+          AwsvpcConfiguration:
+            Subnets: ["publicsubnet-1a", "publicsubnet-1c"]
+            SecurityGroups: ["sg-0440dc5f7e14b667b"]
+            AssignPublicIp: "ENABLED"
 
 # Hooks:
 # - BeforeInstall: "BeforeInstallHookFunctionName"
