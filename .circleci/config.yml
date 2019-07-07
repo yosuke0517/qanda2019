@@ -4,6 +4,32 @@
 #
 version: 2.1
 jobs:
+  checkout_code:
+    docker:
+      - image: circleci/ruby:2.6.1
+    working_directory: ~/myapp
+    steps:
+      - checkout
+      - save_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/myapp
+
+  bundle_dependencies:
+    docker:
+      - image: circleci/ruby:2.6.1
+      - image: circleci/mysql:5.7
+    working_directory: ~/myapp
+    steps:
+      - restore_cache:
+          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
+      - restore_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: v1-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ~/myapp/vendor/bundle
   test:
     docker:
       # specify the version you desire here
