@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.6.1
@@ -81,3 +81,59 @@ jobs:
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
+ deploy:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: install aws
+          command: |
+            sudo pip install awscli
+            aws --version
+      - run:
+          name: Install ecs-deploy
+          command: |
+            curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
+            sudo chmod +x /usr/bin/ecs-deploy
+      - run:
+          name: Install jq
+          command: sudo apt-get install -y jq
+      - run:
+          name: "Log in to AWS ECR"
+          command: eval $(aws ecr get-login --no-include-email --region ap-northeast-1)
+      - run:
+          name: "Build & Push Docker Image"
+          command: |
+            docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/${REPO_PREFIX}:latest -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qanda2019:$CIRCLE_SHA1 -f Dockerfile_PRO --build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY .
+            docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/${REPO_PREFIX}:$CIRCLE_SHA1
+      - run:
+          name: "DB Migrate"
+          command: |
+            aws ecs run-task \
+              --region ${AWS_DEFAULT_REGION} \
+              --cluster ${REPO_PREFIX}-cluster \
+              --task-definition ${REPO_PREFIX}-task:2 \
+              --overrides file://ecs/run_task_db_migrate.json
+      - run:
+          name: "Sevice deploy"
+          environment:
+          command: |
+            ecs-deploy -c ${REPO_PREFIX}-cluster -n ${REPO_PREFIX}-service \
+              -r ap-northeast-1 -t 240 \
+              -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/${REPO_PREFIX}:$CIRCLE_SHA1
+workflows:
+  version: 2.1
+  test_and_deploy:
+    jobs:
+      - checkout_code
+      - test:
+          requires:
+            - checkout_code
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
