@@ -142,7 +142,7 @@ jobs:
               --cluster ${REPO_PREFIX}-cluster \
               --task-definition ${REPO_PREFIX}-task:2 \
               --overrides file://ecs/run_task_db_migrate.json
-              --network-configuration "awsvpcConfiguration={subnets=[subnet-04775a54734307058,subnet-0e8be33b3f8607021],securityGroups=[sg-03b0cf1cf1958c0ca],assignPublicIp=DISABLED}"
+              --network-configuration "awsvpcConfiguration={subnets=[subnet-04775a54734307058,subnet-0e8be33b3f8607021],securityGroups=[sg-027796d19629c45c3],assignPublicIp=DISABLED}"
               --launch-type FARGATE
       - run:
           name: "Sevice deploy"
