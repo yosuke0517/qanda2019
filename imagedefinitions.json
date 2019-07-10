@@ -62,7 +62,7 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:245532497036:task-definition/qanda2019-task:2",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:245532497036:task-definition/qanda2019-task:3",
   "family": "qanda2019-task",
   "requiresAttributes": [
     {

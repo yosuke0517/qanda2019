@@ -140,9 +140,8 @@ jobs:
             aws ecs run-task \
               --region ${AWS_DEFAULT_REGION} \
               --cluster ${REPO_PREFIX}-cluster \
-              --task-definition ${REPO_PREFIX}-task:2 \
+              --task-definition ${REPO_PREFIX}-task \
               --overrides file://ecs/run_task_db_migrate.json 
-              --launch-type FARGATE
       - run:
           name: "Sevice deploy"
           environment:
