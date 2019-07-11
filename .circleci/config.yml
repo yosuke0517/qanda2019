@@ -149,7 +149,7 @@ jobs:
             aws deploy create-deployment \
             --application-name AppECS-qanda2019-cluster-qanda2019-service \
             --deployment-group-name DgpECS-qanda2019-cluster-qanda2019-service \
-            --revision '{"revisionType": "AppSpecContent", "appSpecContent": {"content": "{\"version\": 1, \"Resources\": [{\"TargetService\": {\"Type\": \"AWS::ECS::Service\", \"Properties\": {\"TaskDefinition\": \""arn:aws:ecs:ap-northeast-1:245532497036:task-definition/qanda2019-task:latest"\", \"LoadBalancerInfo\": {\"ContainerName\": \"qanda2019-container\", \"ContainerPort\": 80}}}}]}","sha256": "192a44b8191ec68bb5bd4861d4960065bdb148d98e9ef74a5b4d9b6930f179b0"}}'
+            --revision '{"revisionType": "AppSpecContent", "appSpecContent": {"content": "{\"version\": 1, \"Resources\": [{\"TargetService\": {\"Type\": \"AWS::ECS::Service\", \"Properties\": {\"TaskDefinition\": \"arn:aws:ecs:ap-northeast-1:245532497036:task-definition/qanda2019-task:latest\", \"LoadBalancerInfo\": {\"ContainerName\": \"qanda2019-container\", \"ContainerPort\": 80}}}}]}"}}'
 workflows:
   version: 2.1
   test_and_deploy:
