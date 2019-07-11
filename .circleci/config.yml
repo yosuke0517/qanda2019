@@ -147,7 +147,7 @@ jobs:
           environment:
           command: |
             aws deploy create-deployment \
-            --application-name qanda2019 \
+            --application-name AppECS-qanda2019-cluster-qanda2019-service \
             --deployment-group-name DgpECS-qanda2019-cluster-qanda2019-service \
 workflows:
   version: 2.1
