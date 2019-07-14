@@ -6,7 +6,7 @@ Resources:
         TaskDefinition: "<TASK_DEFINITION>"
         LoadBalancerInfo:
           ContainerName: "qanda2019-container"
-          ContainerPort: 80
+          ContainerPort: 3000
 # Optional properties
         PlatformVersion: "LATEST"
         NetworkConfiguration:
