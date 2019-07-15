@@ -146,10 +146,10 @@ jobs:
           name: "Sevice deploy"
           environment:
           command: |
-            ecs-deploy -c ${REPO_PREFIX}-cluster -n ${REPO_PREFIX}-service6 \
-              -r ap-northeast-1 -t 240 \
-              -i $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/qanda2019:$CIRCLE_SHA1 \
-              --skip-deployments-check
+            aws deploy create-deployment \
+            --application-name AppECS-qanda2019-cluster-qanda2019-service6 \
+            --deployment-group-name DgpECS-qanda2019-cluster-qanda2019-service6 \
+            --revision '{"revisionType": "AppSpecContent", "appSpecContent": {"content": "{\"version\": 1, \"Resources\": [{\"TargetService\": {\"Type\": \"AWS::ECS::Service\", \"Properties\": {\"TaskDefinition\": \"arn:aws:ecs:ap-northeast-1:245532497036:task-definition/qanda2019-task:latest\", \"LoadBalancerInfo\": {\"ContainerName\": \"qanda2019-container\", \"ContainerPort\": 3000}}}}]}"}}'
 workflows:
   version: 2.1
   test_and_deploy:
