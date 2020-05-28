@@ -75,7 +75,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "bootstrap", ">= 4.3.1"
 gem 'jquery-rails', '~> 4.3.1'
 gem 'mini_racer'
-gem 'kaminari', '~> 1.1.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'kaminari-bootstrap'
 gem 'slim-rails'
 gem 'html2slim'
